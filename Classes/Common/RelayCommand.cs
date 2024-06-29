@@ -7,7 +7,7 @@ namespace Libraries.Classes
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;

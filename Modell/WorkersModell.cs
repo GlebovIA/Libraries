@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Libraries.Modell
 {
-    public class Workers : INotifyPropertyChanged
+    public class WorkersModell : INotifyPropertyChanged
     {
         private int _id;
         public int Id_worker

@@ -1,11 +1,12 @@
 ﻿using Libraries.Classes.Db;
+using Libraries.Modell;
 using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
     public class WorkersContext : DbContext
     {
-        public DbSet<WorkersContext> Workers { get; set; }
+        public DbSet<WorkersModell> Workers { get; set; }
         public WorkersContext()
         {
             Database.EnsureCreated();

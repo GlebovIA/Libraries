@@ -1,0 +1,58 @@
+﻿<Page x:Class="Libraries.View.Pages.CommonPages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Libraries.View.Pages.CommonPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#ff5a798e">
+            <Image Height="50" Width="50" HorizontalAlignment="Left" Source="pack://application:,,,/Resources/Logo.png" Margin="5"/>
+            <Label  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60, 0, 0, 0">
+                <TextBlock Text="Библиотеки" FontSize="24" FontWeight="Bold" Foreground="#ffefd0a8"/>
+            </Label>
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="10" Direction="315" ShadowDepth="0.2" Opacity="0.4"/>
+            </Grid.Effect>
+        </Grid>
+        <Grid Background="#ffefd0a8" Margin="0, 60, 0, 0">
+            <Menu Height="30" VerticalAlignment="Top" Background="#ffefd0a8">
+                <MenuItem Height="30" Header="Действия" Foreground="White" FontSize="14" BorderThickness="0" Background="#ff5a798e" Margin="15,0,0,0">
+                    <MenuItem Header="Добавление" Background="#ff5a798e" Foreground="White" FontSize="14" BorderThickness="0"/>
+                    <MenuItem Header="Экспорт" Background="#ff5a798e" Foreground="White" FontSize="14" BorderThickness="0"/>
+                    <MenuItem.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" Direction="315" ShadowDepth="0.2" Opacity="0.4"/>
+                    </MenuItem.Effect>
+                </MenuItem>
+            </Menu>
+            <Border Width="270" HorizontalAlignment="Left" Margin="5, 35, 0, 5">
+                <ListView x:Name="TabList"  Background="#ffefd0a8" BorderThickness="0">
+                    <ListView.Resources>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <Border Background="Transparent">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                </ListView>
+            </Border>
+            <Border Background="White" CornerRadius="10" Margin="280, 35, 5, 50">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="5">
+                    <StackPanel x:Name="recordsParent">
+                        
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+            <Button x:Name="AddBtn" Content="Добавить" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Command="{Binding AddNewRecord}"/>
+        </Grid>
+    </Grid>
+</Page>

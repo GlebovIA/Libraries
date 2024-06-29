@@ -3,26 +3,26 @@ using System.Runtime.CompilerServices;
 
 namespace Libraries.Modell
 {
-    public class Literature_types : INotifyPropertyChanged
+    public class Literature_sourceModell : INotifyPropertyChanged
     {
         private int _id;
-        public int Id_type
+        public int Id_source
         {
             get { return _id; }
             set
             {
                 _id = value;
-                OnPropertyChanged(nameof(Id_type));
+                OnPropertyChanged(nameof(Id_source));
             }
         }
-        private string _typeName;
-        public string Type_name
+        private string _sourceName;
+        public string Source_name
         {
-            get { return _typeName; }
+            get { return _sourceName; }
             set
             {
-                _typeName = value;
-                OnPropertyChanged(nameof(Type_name));
+                _sourceName = value;
+                OnPropertyChanged(nameof(Source_name));
             }
         }
 

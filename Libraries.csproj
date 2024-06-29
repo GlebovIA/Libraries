@@ -7,9 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
-    <Folder Include="View\" />
-    <Folder Include="ViewModell\" />
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+    <Page Remove="Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\BackImage.jpg" />
+    <None Remove="Resources\Images\fond.png" />
+    <None Remove="Resources\Images\fonds.png" />
+    <None Remove="Resources\Images\library.png" />
+    <None Remove="Resources\Images\literatureSource.png" />
+    <None Remove="Resources\Images\literatureSources.png" />
+    <None Remove="Resources\Images\literatureType.png" />
+    <None Remove="Resources\Images\literatureTypes.png" />
+    <None Remove="Resources\Images\replenishment.png" />
+    <None Remove="Resources\Images\replenishments.png" />
+    <None Remove="Resources\Images\user.png" />
+    <None Remove="Resources\Images\worker.png" />
+    <None Remove="Resources\Images\workers.png" />
+    <None Remove="Resources\Logo.png" />
+    <None Remove="Resources\MainMenuImage.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +38,24 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\BackImage.jpg" />
+    <Resource Include="Resources\Images\fond.png" />
+    <Resource Include="Resources\Images\fonds.png" />
+    <Resource Include="Resources\Images\library.png" />
+    <Resource Include="Resources\Images\literatureSource.png" />
+    <Resource Include="Resources\Images\literatureSources.png" />
+    <Resource Include="Resources\Images\literatureType.png" />
+    <Resource Include="Resources\Images\literatureTypes.png" />
+    <Resource Include="Resources\Images\replenishment.png" />
+    <Resource Include="Resources\Images\replenishments.png" />
+    <Resource Include="Resources\Images\user.png" />
+    <Resource Include="Resources\Images\worker.png" />
+    <Resource Include="Resources\Images\workers.png" />
+    <Resource Include="Resources\Logo.png" />
+    <Resource Include="Resources\MainMenuImage.jpg" />
   </ItemGroup>
 
 </Project>

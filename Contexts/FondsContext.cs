@@ -1,11 +1,12 @@
 ﻿using Libraries.Classes.Db;
+using Libraries.Modell;
 using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
     public class FondsContext : DbContext
     {
-        public DbSet<FondsContext> Fonds { get; set; }
+        public DbSet<FondsModell> Fonds { get; set; }
         public FondsContext()
         {
             Database.EnsureCreated();

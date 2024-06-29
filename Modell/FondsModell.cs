@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Libraries.Modell
 {
-    public class Fonds : INotifyPropertyChanged
+    public class FondsModell : INotifyPropertyChanged
     {
         private int _id;
         public int Id_fond

@@ -1,11 +1,12 @@
 ﻿using Libraries.Classes.Db;
+using Libraries.Modell;
 using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
     public class LiteratureSourcesContext : DbContext
     {
-        public DbSet<LiteratureSourcesContext> Literature_sources { get; set; }
+        public DbSet<Literature_sourceModell> Literature_sources { get; set; }
         public LiteratureSourcesContext()
         {
             Database.EnsureCreated();

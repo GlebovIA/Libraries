@@ -1,17 +1,35 @@
-﻿namespace Libraries.Classes.Db
+﻿using Microsoft.Data.SqlClient;
+using System;
+using System.Windows;
+
+namespace Libraries.Classes.Db
 {
     public class DbConnection
     {
         private static SqlConnection Connection { get; set; }
         public static SqlConnection CreateConnection(string login, string pwd)
         {
+
             Connection = new SqlConnection($"server=HOME-PC\\MSSERVER;database=Libraries;user={login};pwd={pwd}");
             return Connection;
         }
+        public static void Disconnect()
+        {
+            Connection.Dispose();
+        }
         public static SqlConnection OpenConnection()
         {
-            Connection.Open();
-            return Connection;
+            try
+            {
+                if (Connection.State == System.Data.ConnectionState.Open) Connection.Close();
+                Connection.Open();
+                return Connection;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
         public static void CloseConnection()
         {

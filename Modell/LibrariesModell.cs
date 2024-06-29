@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Libraries.Modell
 {
-    public class Libraries : INotifyPropertyChanged
+    public class LibrariesModell : INotifyPropertyChanged
     {
         private int _id;
         public int Id_library

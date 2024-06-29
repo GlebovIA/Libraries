@@ -1,11 +1,12 @@
 ﻿using Libraries.Classes.Db;
+using Libraries.Modell;
 using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
     public class ReplenishmentsContext : DbContext
     {
-        public DbSet<ReplenishmentsContext> Replenishments { get; set; }
+        public DbSet<Replenishments> Replenishments { get; set; }
         public ReplenishmentsContext()
         {
             Database.EnsureCreated();
