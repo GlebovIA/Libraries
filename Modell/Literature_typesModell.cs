@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Libraries.Modell
 {
-    public class Literature_typesModell : INotifyPropertyChanged
+    public class Literature_typesModell : BaseModell
     {
         private int _id;
+        private string _typeName;
+        [Key]
         public int Id_type
         {
             get { return _id; }
@@ -15,7 +16,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Id_type));
             }
         }
-        private string _typeName;
         public string Type_name
         {
             get { return _typeName; }
@@ -25,12 +25,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Type_name));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public Literature_typesModell() => Model = model.type;
     }
 }

@@ -9,9 +9,16 @@ namespace Libraries.Classes.Db
         private static SqlConnection Connection { get; set; }
         public static SqlConnection CreateConnection(string login, string pwd)
         {
-
-            Connection = new SqlConnection($"server=HOME-PC\\MSSERVER;database=Libraries;user={login};pwd={pwd}");
-            return Connection;
+            try
+            {
+                Connection = new SqlConnection($"server=HOME-PC\\MSSERVER;database=Libraries;user={login};pwd={pwd}");
+                return Connection;
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось выполнить подключение к базе данных!");
+                return null;
+            }
         }
         public static void Disconnect()
         {

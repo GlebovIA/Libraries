@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Libraries.Modell;
+using System.Windows.Controls;
 
 namespace Libraries.View.Pages.Library
 {
@@ -7,9 +8,11 @@ namespace Libraries.View.Pages.Library
     /// </summary>
     public partial class LibraryRedacPage : Page
     {
-        public LibraryRedacPage()
+        public LibrariesModell Modell { get; set; }
+        public LibraryRedacPage(LibrariesModell modell)
         {
             InitializeComponent();
+            Modell = modell;
         }
     }
 }

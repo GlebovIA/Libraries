@@ -1,20 +1,18 @@
 ﻿using Libraries.View.Pages.CommonPages;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Libraries.Modell
 {
-    public class MainModell : INotifyPropertyChanged
+    public class MainModell : BaseModell
     {
-        public void AllTabs(MainPage mp)
+        public MainPage MP { get; set; }
+        public MainModell(MainPage mp)
         {
-            mp.TabList.ItemsSource = TabsModell.CreateTabs();
+            MP = mp;
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void AllTabs()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            MP.TabList.ItemsSource = TabsModell.CreateTabs(MP);
+
         }
     }
 }

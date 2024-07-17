@@ -1,10 +1,9 @@
-﻿using Libraries.Classes.Db;
-using Libraries.Modell;
+﻿using Libraries.Modell;
 using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
-    public class LiteratureSourcesContext : DbContext
+    public class LiteratureSourcesContext : BaseContext
     {
         public DbSet<Literature_sourceModell> Literature_sources { get; set; }
         public LiteratureSourcesContext()
@@ -12,6 +11,5 @@ namespace Libraries.Contexts
             Database.EnsureCreated();
             Literature_sources.Load();
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(DbConnection.OpenConnection());
     }
 }

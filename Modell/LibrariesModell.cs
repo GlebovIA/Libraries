@@ -1,11 +1,15 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 
 namespace Libraries.Modell
 {
-    public class LibrariesModell : INotifyPropertyChanged
+    public class LibrariesModell : BaseModell
     {
         private int _id;
+        private string _name;
+        private string _city;
+        private string _address;
+        [Key]
         public int Id_library
         {
             get { return _id; }
@@ -15,7 +19,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Id_library));
             }
         }
-        private string _name;
         public string Library_name
         {
             get { return _name; }
@@ -25,7 +28,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Library_name));
             }
         }
-        private string _city;
         public string City
         {
             get { return _city; }
@@ -35,7 +37,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(City));
             }
         }
-        private string _address;
         public string Address
         {
             get { return _address; }
@@ -45,12 +46,10 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Address));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        public string FullAddress
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            get { return "г. " + City + " ул. " + Address; }
         }
+        public LibrariesModell() => Model = model.library;
     }
 }

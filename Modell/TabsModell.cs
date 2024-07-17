@@ -1,26 +1,28 @@
 ﻿using Libraries.View.Pages.CommonPages;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using static System.Windows.Media.Brushes;
 
 namespace Libraries.Modell
 {
-    public class TabsModell : INotifyPropertyChanged
+    public class TabsModell : BaseModell
     {
-        private int _id { get; set; }
+        public enum entity
+        {
+            Libraries, Fonds, Types, Sources, Workers, Replenishments
+        }
+        private entity _entity { get; set; }
         private string _name { get; set; }
         private string _image { get; set; }
-        public int Id
+        public entity Entity
         {
-            get { return _id; }
+            get { return _entity; }
             set
             {
-                _id = value;
-                OnPropertyChanged(nameof(Id));
+                _entity = value;
+                OnPropertyChanged(nameof(Entity));
             }
         }
         public string Name
@@ -41,25 +43,28 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Image));
             }
         }
-
+        public static MainPage MP { get; set; }
         public static List<TabElement> AccessibleEntities { get; set; }
-        public TabsModell(string name, string img, int idElement)
+        public TabsModell(string name, string img, entity entity)
         {
             Name = name;
             Image = img;
-            Id = idElement;
+            Entity = entity;
         }
-        public static List<TabElement> CreateTabs()
+        public static List<TabElement> CreateTabs(MainPage mp)
         {
-            AccessibleEntities = new List<TabElement>();
-            AccessibleEntities.Add(new TabElement(new TabsModell("Библиотеки", "/Resources/Images/library.png", 1)));
-            AccessibleEntities.Add(new TabElement(new TabsModell("Фонды", "/Resources/Images/fonds.png", 2)));
-            AccessibleEntities.Add(new TabElement(new TabsModell("Типы литературы", "/Resources/Images/literatureTypes.png", 3)));
-            AccessibleEntities.Add(new TabElement(new TabsModell("Носители литературы", "/Resources/Images/literatureSources.png", 4)));
+            MP = mp;
+            AccessibleEntities = new List<TabElement>
+            {
+                new TabElement(new TabsModell("Библиотеки", "/Resources/Images/library.png", entity.Libraries)),
+                new TabElement(new TabsModell("Фонды", "/Resources/Images/fonds.png", entity.Fonds)),
+                new TabElement(new TabsModell("Типы литературы", "/Resources/Images/literatureTypes.png", entity.Types)),
+                new TabElement(new TabsModell("Носители литературы", "/Resources/Images/literatureSources.png", entity.Sources))
+            };
             if (UserModell.CurrentUser == UserModell.usersRole.Librarian || UserModell.CurrentUser == UserModell.usersRole.Admin)
             {
-                AccessibleEntities.Add(new TabElement(new TabsModell("Пополнения фондов", "/Resources/Images/replenishments.png", 5)));
-                AccessibleEntities.Add(new TabElement(new TabsModell("Сотрудники", "/Resources/Images/workers.png", 6)));
+                AccessibleEntities.Add(new TabElement(new TabsModell("Пополнения фондов", "/Resources/Images/replenishments.png", entity.Workers)));
+                AccessibleEntities.Add(new TabElement(new TabsModell("Сотрудники", "/Resources/Images/workers.png", entity.Replenishments)));
             }
             foreach (TabElement tab in AccessibleEntities)
             {
@@ -79,12 +84,6 @@ namespace Libraries.Modell
             TabElement item = sender as TabElement;
             item.BorderThickness = new Thickness(0);
             item.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 239, 208, 168));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

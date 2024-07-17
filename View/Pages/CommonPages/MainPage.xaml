@@ -46,11 +46,21 @@
                 </ListView>
             </Border>
             <Border Background="White" CornerRadius="10" Margin="280, 35, 5, 50">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="5">
-                    <StackPanel x:Name="recordsParent">
-                        
-                    </StackPanel>
-                </ScrollViewer>
+                <ListView x:Name="ItemsList" BorderThickness="0" Margin="3">
+                    <ListView.Resources>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <Border Background="Transparent">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                </ListView>
             </Border>
             <Button x:Name="AddBtn" Content="Добавить" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Command="{Binding AddNewRecord}"/>
         </Grid>

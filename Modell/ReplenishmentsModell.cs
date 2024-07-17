@@ -1,12 +1,26 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Libraries.Contexts;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Libraries.Modell
 {
-    public class Replenishments
+    public class ReplenishmentsModell : BaseModell
     {
         private int _id;
+        private int _fond;
+        private string _fondName;
+        private int _worker;
+        private string _workerName;
+        private DateTime _date;
+        private int _literatureSource;
+        private string _sourceName;
+        private int _literatureType;
+        private string _typeName;
+        private string _publishingCompany;
+        private DateTime _publishingDate;
+        private int _copyCount;
+        [Key]
         public int Id_replenishment
         {
             get { return _id; }
@@ -16,7 +30,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Id_replenishment));
             }
         }
-        private int _fond;
         public int Fond
         {
             get { return _fond; }
@@ -26,7 +39,14 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Fond));
             }
         }
-        private int _worker;
+        public string GetFond
+        {
+            get { return _fondName; }
+            set
+            {
+                _fondName = (new FondsContext()).Fonds.Where(x => x.Id_fond == _fond).First().Fond_name;
+            }
+        }
         public int Worker
         {
             get { return _worker; }
@@ -36,7 +56,14 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Worker));
             }
         }
-        private DateTime _date;
+        public string GetWorker
+        {
+            get { return _workerName; }
+            set
+            {
+                _workerName = (new WorkersContext()).Workers.Where(x => x.Id_worker == _worker).First().GetFio;
+            }
+        }
         public DateTime Date
         {
             get { return _date; }
@@ -46,7 +73,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Date));
             }
         }
-        private int _literatureSource;
         public int Literature_source
         {
             get { return _literatureSource; }
@@ -56,7 +82,14 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Literature_source));
             }
         }
-        private int _literatureType;
+        public string GetLiteratureSource
+        {
+            get { return _sourceName; }
+            set
+            {
+                _sourceName = (new LiteratureSourcesContext()).Literature_sources.Where(x => x.Id_source == _literatureSource).First().Source_name;
+            }
+        }
         public int Literature_type
         {
             get { return _literatureType; }
@@ -66,7 +99,14 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(_literatureType));
             }
         }
-        private string _publishingCompany;
+        public string GetLiteratureType
+        {
+            get { return _typeName; }
+            set
+            {
+                _typeName = (new LiteratureTypesContext()).Literature_types.Where(x => x.Id_type == _literatureType).First().Type_name;
+            }
+        }
         public string Publishing_company
         {
             get { return _publishingCompany; }
@@ -76,7 +116,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Publishing_company));
             }
         }
-        private DateTime _publishingDate;
         public DateTime Publishing_date
         {
             get { return _publishingDate; }
@@ -86,7 +125,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Publishing_date));
             }
         }
-        private int _copyCount;
         public int Copy_count
         {
             get { return _copyCount; }
@@ -96,12 +134,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Copy_count));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public ReplenishmentsModell() => Model = model.replenishment;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Libraries.Modell;
+using Libraries.ViewModell;
 using System.Windows.Controls;
 
 namespace Libraries.View.Pages.CommonPages
@@ -8,10 +9,10 @@ namespace Libraries.View.Pages.CommonPages
     /// </summary>
     public partial class TabElement : Border
     {
-        public TabElement(TabsModell context)
+        public TabElement(TabsModell modell)
         {
             InitializeComponent();
-            DataContext = context;
+            DataContext = new VMTabs(modell, this);
         }
     }
 }

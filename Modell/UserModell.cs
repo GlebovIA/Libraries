@@ -1,13 +1,11 @@
 ﻿using Libraries.Contexts;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace Libraries.Modell
 {
-    public class UserModell : INotifyPropertyChanged
+    public class UserModell : BaseModell
     {
         private int _id;
         private string _login;
@@ -61,12 +59,6 @@ namespace Libraries.Modell
             if (roleString == usersRole.Librarian.ToString())
                 return usersRole.Librarian;
             else return usersRole.Reader;
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

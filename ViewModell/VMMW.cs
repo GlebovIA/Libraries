@@ -1,4 +1,5 @@
-﻿using Libraries.Classes.Db;
+﻿using Libraries.Classes;
+using Libraries.Classes.Db;
 using Libraries.View.Pages.CommonPages;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,36 +9,17 @@ namespace Libraries.ViewModell
 {
     public class VMMW : INotifyPropertyChanged
     {
-        public enum pages
-        {
-            main,
-            logIn,
-
-        }
         private static AuthorizationPage AP = new AuthorizationPage();
-        private static MainPage MP { get; set; }
-        private static Page CurrentPage { get; set; }
-        public static Page ChangePage
+        private static Page _currentPage { get; set; }
+        public static Page CurrentPage
         {
-            get { return CurrentPage; }
+            get { return _currentPage; }
             set
             {
                 if (value != null && value is Page)
                 {
-                    CurrentPage = value;
-                    FrameNavigator(CurrentPage);
-                }
-            }
-        }
-        public static MainPage Main
-        {
-            get { return MP; }
-            set
-            {
-                if (value != null && value is MainPage)
-                {
-                    MP = value;
-                    FrameNavigator(MP);
+                    _currentPage = value;
+                    MW.frame.Navigate(_currentPage);
                 }
             }
         }
@@ -45,16 +27,17 @@ namespace Libraries.ViewModell
         public VMMW(MainWindow mw)
         {
             MW = mw;
-            FrameNavigator(AP);
+            CurrentPage = AP;
         }
-        private static void FrameNavigator(Page page)
+        public RelayCommand Disconnect
         {
-            MW.frame.Navigate(page);
-        }
-        public void Disconect()
-        {
-            FrameNavigator(AP);
-            DbConnection.Disconnect();
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    DbConnection.Disconnect();
+                });
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

@@ -1,10 +1,9 @@
-﻿using Libraries.Classes.Db;
-using Libraries.Modell;
+﻿using Libraries.Modell;
 using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
-    public class FondsContext : DbContext
+    public class FondsContext : BaseContext
     {
         public DbSet<FondsModell> Fonds { get; set; }
         public FondsContext()
@@ -12,6 +11,5 @@ namespace Libraries.Contexts
             Database.EnsureCreated();
             Fonds.Load();
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(DbConnection.OpenConnection());
     }
 }

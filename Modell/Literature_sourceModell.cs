@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Libraries.Modell
 {
-    public class Literature_sourceModell : INotifyPropertyChanged
+    public class Literature_sourceModell : BaseModell
     {
         private int _id;
+        private string _sourceName;
+        [Key]
         public int Id_source
         {
             get { return _id; }
@@ -15,7 +16,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Id_source));
             }
         }
-        private string _sourceName;
         public string Source_name
         {
             get { return _sourceName; }
@@ -25,12 +25,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Source_name));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public Literature_sourceModell() => Model = model.source;
     }
 }

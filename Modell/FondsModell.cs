@@ -1,11 +1,22 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Libraries.Contexts;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Libraries.Modell
 {
-    public class FondsModell : INotifyPropertyChanged
+    public class FondsModell : BaseModell
     {
         private int _id;
+        private string _name;
+        private int _library;
+        private string _libraryName;
+        private int _bookCount;
+        private int _journalCount;
+        private int _newspapperCount;
+        private int _collectionCount;
+        private int _dissertationCount;
+        private int _reportCount;
+        [Key]
         public int Id_fond
         {
             get { return _id; }
@@ -15,7 +26,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Id_fond));
             }
         }
-        private string _name;
         public string Fond_name
         {
             get { return _name; }
@@ -25,7 +35,23 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Fond_name));
             }
         }
-        private int _bookCount;
+        public int Library
+        {
+            get { return _library; }
+            set
+            {
+                _library = value;
+                OnPropertyChanged(nameof(Library));
+            }
+        }
+        public string GetLibrary
+        {
+            get { return _libraryName; }
+            set
+            {
+                _libraryName = (new LibrariesContext()).Libraries.Where(x => x.Id_library == _library).First().Library_name;
+            }
+        }
         public int Book_count
         {
             get { return _bookCount; }
@@ -35,7 +61,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Book_count));
             }
         }
-        private int _journalCount;
         public int Journal_count
         {
             get { return _journalCount; }
@@ -45,7 +70,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Journal_count));
             }
         }
-        private int _newspapperCount;
         public int Newspapper_count
         {
             get { return _newspapperCount; }
@@ -55,7 +79,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(_newspapperCount));
             }
         }
-        private int _collectionCount;
         public int Collection_count
         {
             get { return _collectionCount; }
@@ -65,7 +88,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Collection_count));
             }
         }
-        private int _dissertationCount;
         public int Dissertation_count
         {
             get { return _dissertationCount; }
@@ -75,7 +97,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Dissertation_count));
             }
         }
-        private int _reportCount;
         public int Report_count
         {
             get { return _reportCount; }
@@ -85,12 +106,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Report_count));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public FondsModell() => Model = model.fond;
     }
 }

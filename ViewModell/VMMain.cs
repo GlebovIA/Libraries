@@ -11,9 +11,8 @@ namespace Libraries.ViewModell
         public VMMain(MainPage mp)
         {
             MP = mp;
-            main = new MainModell();
-            RelayCommand command = CreateTabs;
-            command.Execute(this);
+            main = new MainModell(MP);
+            CreateTabs.Execute(main);
         }
         public RelayCommand CreateTabs
         {
@@ -21,7 +20,7 @@ namespace Libraries.ViewModell
             {
                 return new RelayCommand(obj =>
                 {
-                    main.AllTabs(MP);
+                    main.AllTabs();
                 });
             }
         }
