@@ -1,26 +1,40 @@
 ﻿using Libraries.Classes;
 using Libraries.Contexts;
 using Libraries.Modell;
-using Libraries.View.Pages.CommonPages;
 using System.Windows.Controls;
 
 namespace Libraries.ViewModell
 {
     public class VMItem
     {
-        public BaseModell Modell { get; set; }
         public UserControl Item { get; set; }
-        public VMItem(UserControl item)
+        public BaseModell Modell { get; set; }
+        public BaseContext Context { get; set; }
+        public VMItem(UserControl item, BaseModell modell, BaseContext context)
         {
             Item = item;
-            Modell = (Item as BaseControl).Modell;
+            Modell = modell;
+            Context = context;
         }
-        public RelayCommand Edit()
+        public RelayCommand Edit
         {
-            return new RelayCommand(obj =>
+            get
             {
-                BaseContext.Edit(Modell);
-            });
+                return new RelayCommand(obj =>
+                {
+                    ItemsModell.Edit(Modell);
+                });
+            }
+        }
+        public RelayCommand Delete
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    BaseContext.Delete(Modell, Context);
+                });
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Libraries.Contexts;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Libraries.Modell
@@ -9,10 +10,9 @@ namespace Libraries.Modell
         private int _id;
         private string _name;
         private int _library;
-        private string _libraryName;
         private int _bookCount;
         private int _journalCount;
-        private int _newspapperCount;
+        private int _newspaperCount;
         private int _collectionCount;
         private int _dissertationCount;
         private int _reportCount;
@@ -23,6 +23,7 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
+                Id = _id;
                 OnPropertyChanged(nameof(Id_fond));
             }
         }
@@ -44,13 +45,10 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Library));
             }
         }
+        [NotMapped]
         public string GetLibrary
         {
-            get { return _libraryName; }
-            set
-            {
-                _libraryName = (new LibrariesContext()).Libraries.Where(x => x.Id_library == _library).First().Library_name;
-            }
+            get { return (new LibrariesContext()).Libraries.Where(x => x.Id_library == _library).First().Library_name; }
         }
         public int Book_count
         {
@@ -70,13 +68,13 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Journal_count));
             }
         }
-        public int Newspapper_count
+        public int Newspaper_count
         {
-            get { return _newspapperCount; }
+            get { return _newspaperCount; }
             set
             {
-                _newspapperCount = value;
-                OnPropertyChanged(nameof(_newspapperCount));
+                _newspaperCount = value;
+                OnPropertyChanged(nameof(_newspaperCount));
             }
         }
         public int Collection_count
@@ -106,6 +104,5 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Report_count));
             }
         }
-        public FondsModell() => Model = model.fond;
     }
 }

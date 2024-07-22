@@ -19,22 +19,22 @@
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0, 60, 0, 0">
             <Grid Background="#ffefd0a8">
-                <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 10, 0, 0">
+                <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 10, 0, 0">
                     <TextBlock x:Name="HeaderTBck" Text="" FontSize="24" FontWeight="Bold" Foreground="#ff5a798e"/>
                 </Label>
                 <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 60, 0, 0">
                     <TextBlock Text="#Название библиотеки" FontSize="18" Foreground="#ff5a798e"/>
                 </Label>
-                <TextBox x:Name="NameTBx" Text="{Binding Modell.Library_name}" Height="30" VerticalAlignment="Top" Margin="10, 100, 10, 10"/>
+                <TextBox x:Name="NameTBx" Text="{Binding Modell.Library_name}" FontSize="14" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Top" Margin="10, 100, 10, 10"/>
                 <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 130, 0, 0">
                     <TextBlock Text="#Город" FontSize="18" Foreground="#ff5a798e"/>
                 </Label>
-                <TextBox x:Name="CityTBx" Text="{Binding Modell.City}" Height="30" VerticalAlignment="Top" Margin="10, 170, 10, 10"/>
+                <TextBox x:Name="CityTBx" Text="{Binding Modell.City}" FontSize="14" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Top" Margin="10, 170, 10, 10"/>
                 <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 200, 0, 0">
                     <TextBlock Text="#Адрес" FontSize="18" Foreground="#ff5a798e"/>
                 </Label>
-                <TextBox x:Name="AddressTBx" Text="{Binding Modell.Address}" Height="30" VerticalAlignment="Top" Margin="10, 240, 10, 10"/>
-                <Button x:Name="AddRedacBtn" Content="" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10"/>
+                <TextBox x:Name="AddressTBx" Text="{Binding Modell.Address}" FontSize="14" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Top" Margin="10, 240, 10, 10"/>
+                <Button x:Name="AddRedacBtn" Content="" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Command="{Binding Apply}"/>
                 <Button Content="Отмена" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10"/>
             </Grid>
         </ScrollViewer>

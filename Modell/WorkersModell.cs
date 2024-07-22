@@ -24,6 +24,7 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
+                Id = _id;
                 OnPropertyChanged(nameof(Id_worker));
             }
         }
@@ -124,6 +125,5 @@ namespace Libraries.Modell
                 _fio = _workerSurname + " " + _workerName + " " + _workerLastname;
             }
         }
-        public WorkersModell() => Model = model.worker;
     }
 }

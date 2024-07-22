@@ -1,5 +1,4 @@
 ﻿using Libraries.Modell;
-using Libraries.View.Pages.Library;
 using Libraries.ViewModell;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
@@ -9,15 +8,22 @@ namespace Libraries.Contexts
 {
     public class BaseContext : DbContext
     {
-        public static void Edit(BaseModell baseModell)
+        public static void Edit(BaseModell modell, BaseContext context, bool isNew)
         {
-            entity SelectedEntity = (VMTabs.CurrentElement.DataContext as VMTabs).Modell.Entity;
-            switch (SelectedEntity)
+            if (isNew)
             {
-                case entity.Libraries:
-                    VMMW.CurrentPage = new LibraryRedacPage(baseModell as LibrariesModell);
-                    break;
+                context.Add(modell);
             }
+            context.SaveChanges();
+            VMMW.CurrentPage = VMMW.MP;
+            MP.ItemsList.ItemsSource = TabsModell.CreateItems(VMTabs.CurrentElement);
+        }
+        public static void Delete(BaseModell modell, BaseContext context)
+        {
+            context.Remove(modell);
+            context.SaveChanges();
+            VMMW.CurrentPage = VMMW.MP;
+            MP.ItemsList.ItemsSource = TabsModell.CreateItems(VMTabs.CurrentElement);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

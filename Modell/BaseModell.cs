@@ -1,9 +1,11 @@
 ﻿using Libraries.Contexts;
 using Libraries.View.Pages.CommonPages;
+using Libraries.View.Pages.Fond;
 using Libraries.View.Pages.Library;
 using Libraries.ViewModell;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,17 +15,8 @@ namespace Libraries.Modell
 {
     public class BaseModell : INotifyPropertyChanged
     {
-        private model _model;
-        public model Model
-        {
-            get { return _model; }
-            set
-            {
-                _model = value;
-                OnPropertyChanged(nameof(Model));
-            }
-        }
-        public enum model { library, fond, type, source, worker, replenishment }
+        [NotMapped]
+        public int Id { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -42,14 +35,14 @@ namespace Libraries.Modell
                     LibrariesContext libraries = new LibrariesContext();
                     foreach (LibrariesModell library in libraries.Libraries)
                     {
-                        Items.Add(new LibraryItem(library));
+                        Items.Add(new LibraryItem(library, libraries));
                     }
                     break;
                 case entity.Fonds:
                     FondsContext fonds = new FondsContext();
                     foreach (FondsModell fond in fonds.Fonds)
                     {
-                        //Items.Add(new FondItem(fond));
+                        Items.Add(new FondItem(fond, fonds));
                     }
                     break;
                     //case entity.Sources:

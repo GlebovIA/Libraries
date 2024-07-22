@@ -13,6 +13,7 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
+                Id = _id;
                 OnPropertyChanged(nameof(Id_source));
             }
         }
@@ -25,6 +26,5 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Source_name));
             }
         }
-        public Literature_sourceModell() => Model = model.source;
     }
 }

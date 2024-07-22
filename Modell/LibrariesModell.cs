@@ -16,6 +16,7 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
+                Id = _id;
                 OnPropertyChanged(nameof(Id_library));
             }
         }
@@ -50,6 +51,5 @@ namespace Libraries.Modell
         {
             get { return "г. " + City + " ул. " + Address; }
         }
-        public LibrariesModell() => Model = model.library;
     }
 }

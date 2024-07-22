@@ -1,4 +1,5 @@
-﻿using Libraries.Modell;
+﻿using Libraries.Contexts;
+using Libraries.Modell;
 using Libraries.ViewModell;
 using System.Windows.Controls;
 
@@ -7,14 +8,12 @@ namespace Libraries.View.Pages.Library
     /// <summary>
     /// Логика взаимодействия для LibraryItem.xaml
     /// </summary>
-    public partial class LibraryItem : UserControl, IItem
+    public partial class LibraryItem : UserControl
     {
-        public BaseModell Modell { get; set; }
-        public LibraryItem(LibrariesModell modell)
+        public LibraryItem(LibrariesModell modell, LibrariesContext context)
         {
             InitializeComponent();
-            Modell = modell;
-            DataContext = new VMItem(this);
+            DataContext = new VMItem(this, modell, context);
         }
     }
 }

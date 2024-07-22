@@ -10,6 +10,7 @@ namespace Libraries.ViewModell
     public class VMMW : INotifyPropertyChanged
     {
         private static AuthorizationPage AP = new AuthorizationPage();
+        public static MainPage MP;
         private static Page _currentPage { get; set; }
         public static Page CurrentPage
         {

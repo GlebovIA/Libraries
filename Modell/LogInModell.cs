@@ -10,7 +10,9 @@ namespace Libraries.Modell
         {
             DbConnection.CreateConnection(login, password);
             UserModell.CreateUser(login);
-            VMMW.CurrentPage = new MainPage();
+            MainPage main = new MainPage();
+            VMMW.MP = main;
+            VMMW.CurrentPage = main;
         }
     }
 }

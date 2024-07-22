@@ -1,4 +1,7 @@
-﻿using Libraries.Modell;
+﻿using Libraries.Contexts;
+using Libraries.Modell;
+using Libraries.ViewModell;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Libraries.View.Pages.Library
@@ -9,10 +12,22 @@ namespace Libraries.View.Pages.Library
     public partial class LibraryRedacPage : Page
     {
         public LibrariesModell Modell { get; set; }
-        public LibraryRedacPage(LibrariesModell modell)
+        public LibraryRedacPage(LibrariesContext context, LibrariesModell modell = null)
         {
             InitializeComponent();
-            Modell = modell;
+            if (modell != null)
+            {
+                Modell = context.Libraries.Where(x => x.Id_library == modell.Id_library).FirstOrDefault();
+                AddRedacBtn.Content = "Изменить";
+                HeaderTBck.Text = "Редактирование библиотеки";
+                DataContext = new VMRedac(Modell, context, false);
+            }
+            else
+            {
+                AddRedacBtn.Content = "Добавить";
+                HeaderTBck.Text = "Добавлени библиотеки";
+                DataContext = new VMRedac(new LibrariesModell(), new LibrariesContext());
+            }
         }
     }
 }

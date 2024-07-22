@@ -27,6 +27,7 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
+                Id = _id;
                 OnPropertyChanged(nameof(Id_replenishment));
             }
         }
@@ -134,6 +135,5 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Copy_count));
             }
         }
-        public ReplenishmentsModell() => Model = model.replenishment;
     }
 }

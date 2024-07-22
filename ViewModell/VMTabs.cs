@@ -24,7 +24,7 @@ namespace Libraries.ViewModell
             {
                 return new RelayCommand(obj =>
                 {
-                    TabsModell.MP.ItemsList.ItemsSource = LibrariesModell.CreateItems(Element);
+                    TabsModell.MP.ItemsList.ItemsSource = BaseModell.CreateItems(Element);
                 });
             }
         }

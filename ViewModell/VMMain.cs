@@ -24,5 +24,15 @@ namespace Libraries.ViewModell
                 });
             }
         }
+        public RelayCommand AddNewRecord
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    ItemsModell.Edit();
+                });
+            }
+        }
     }
 }
