@@ -25,7 +25,7 @@ namespace Libraries.View.Pages.Library
             else
             {
                 AddRedacBtn.Content = "Добавить";
-                HeaderTBck.Text = "Добавлени библиотеки";
+                HeaderTBck.Text = "Добавление библиотеки";
                 DataContext = new VMRedac(new LibrariesModell(), new LibrariesContext());
             }
         }

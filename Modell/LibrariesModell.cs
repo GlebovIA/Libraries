@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Libraries.Modell
 {
@@ -16,7 +17,6 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
-                Id = _id;
                 OnPropertyChanged(nameof(Id_library));
             }
         }
@@ -47,6 +47,7 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Address));
             }
         }
+        [NotMapped]
         public string FullAddress
         {
             get { return "г. " + City + " ул. " + Address; }

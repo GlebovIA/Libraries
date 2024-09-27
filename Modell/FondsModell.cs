@@ -1,7 +1,9 @@
 ﻿using Libraries.Contexts;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Windows;
 
 namespace Libraries.Modell
 {
@@ -23,7 +25,6 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
-                Id = _id;
                 OnPropertyChanged(nameof(Id_fond));
             }
         }
@@ -36,6 +37,7 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Fond_name));
             }
         }
+        [ForeignKey(nameof(Library))]
         public int Library
         {
             get { return _library; }
@@ -44,11 +46,6 @@ namespace Libraries.Modell
                 _library = value;
                 OnPropertyChanged(nameof(Library));
             }
-        }
-        [NotMapped]
-        public string GetLibrary
-        {
-            get { return (new LibrariesContext()).Libraries.Where(x => x.Id_library == _library).First().Library_name; }
         }
         public int Book_count
         {
@@ -103,6 +100,22 @@ namespace Libraries.Modell
                 _reportCount = value;
                 OnPropertyChanged(nameof(Report_count));
             }
+        }
+        [NotMapped]
+        public string ThisLibrary
+        {
+            get { return AllLibraries.Where(x => x.Id_library == _library).First().Library_name; }
+        }
+        [NotMapped]
+        public ObservableCollection<LibrariesModell> AllLibraries
+        {
+            get { return new ObservableCollection<LibrariesModell>(new LibrariesContext().Libraries); }
+        }
+        [NotMapped]
+        public LibrariesModell SelectedLibrary
+        {
+            get { if (Library == 0) return AllLibraries.First(); else return AllLibraries.Where(x => x.Id_library == Library).First(); }
+            set { MessageBox.Show(value.Library_name); Library = value.Id_library; OnPropertyChanged(nameof(SelectedLibrary)); }
         }
     }
 }

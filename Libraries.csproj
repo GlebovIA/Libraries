@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
@@ -56,6 +57,15 @@
     <Resource Include="Resources\Images\workers.png" />
     <Resource Include="Resources\Logo.png" />
     <Resource Include="Resources\MainMenuImage.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\Pages\LiteratureSource\SourceItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Pages\LiteratureSource\SourceRedacPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

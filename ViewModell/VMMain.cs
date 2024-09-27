@@ -1,4 +1,5 @@
 ﻿using Libraries.Classes;
+using Libraries.Classes.Common;
 using Libraries.Modell;
 using Libraries.View.Pages.CommonPages;
 
@@ -31,6 +32,16 @@ namespace Libraries.ViewModell
                 return new RelayCommand(obj =>
                 {
                     ItemsModell.Edit();
+                });
+            }
+        }
+        public RelayCommand Export
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    ExportToXLSX.Export();
                 });
             }
         }

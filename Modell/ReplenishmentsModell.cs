@@ -1,7 +1,10 @@
 ﻿using Libraries.Contexts;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Windows;
 
 namespace Libraries.Modell
 {
@@ -27,7 +30,6 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
-                Id = _id;
                 OnPropertyChanged(nameof(Id_replenishment));
             }
         }
@@ -40,14 +42,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Fond));
             }
         }
-        public string GetFond
-        {
-            get { return _fondName; }
-            set
-            {
-                _fondName = (new FondsContext()).Fonds.Where(x => x.Id_fond == _fond).First().Fond_name;
-            }
-        }
         public int Worker
         {
             get { return _worker; }
@@ -55,14 +49,6 @@ namespace Libraries.Modell
             {
                 _worker = value;
                 OnPropertyChanged(nameof(Worker));
-            }
-        }
-        public string GetWorker
-        {
-            get { return _workerName; }
-            set
-            {
-                _workerName = (new WorkersContext()).Workers.Where(x => x.Id_worker == _worker).First().GetFio;
             }
         }
         public DateTime Date
@@ -83,14 +69,6 @@ namespace Libraries.Modell
                 OnPropertyChanged(nameof(Literature_source));
             }
         }
-        public string GetLiteratureSource
-        {
-            get { return _sourceName; }
-            set
-            {
-                _sourceName = (new LiteratureSourcesContext()).Literature_sources.Where(x => x.Id_source == _literatureSource).First().Source_name;
-            }
-        }
         public int Literature_type
         {
             get { return _literatureType; }
@@ -98,14 +76,6 @@ namespace Libraries.Modell
             {
                 _literatureType = value;
                 OnPropertyChanged(nameof(_literatureType));
-            }
-        }
-        public string GetLiteratureType
-        {
-            get { return _typeName; }
-            set
-            {
-                _typeName = (new LiteratureTypesContext()).Literature_types.Where(x => x.Id_type == _literatureType).First().Type_name;
             }
         }
         public string Publishing_company
@@ -134,6 +104,64 @@ namespace Libraries.Modell
                 _copyCount = value;
                 OnPropertyChanged(nameof(Copy_count));
             }
+        }
+        [NotMapped]
+        public string GetFond
+        {
+            get { return _fondName; }
+            set
+            {
+                _fondName = (new FondsContext()).Fonds.Where(x => x.Id_fond == _fond).First().Fond_name;
+            }
+        }
+        [NotMapped]
+        public string GetDate
+        {
+            get { return "Пополнение от: " + _date.ToString("dd.MM.yyyy"); }
+        }
+        [NotMapped]
+        public ObservableCollection<FondsModell> AllFonds
+        {
+            get { return new ObservableCollection<FondsModell>(new FondsContext().Fonds); }
+        }
+        [NotMapped]
+        public ObservableCollection<WorkersModell> AllWorkers
+        {
+            get { return new ObservableCollection<WorkersModell>(new WorkersContext().Workers); }
+        }
+        [NotMapped]
+        public ObservableCollection<Literature_sourcesModell> AllSources
+        {
+            get { return new ObservableCollection<Literature_sourcesModell>(new LiteratureSourcesContext().Literature_sources); }
+        }
+        [NotMapped]
+        public ObservableCollection<Literature_typesModell> AllTypes
+        {
+            get { return new ObservableCollection<Literature_typesModell>(new LiteratureTypesContext().Literature_types); }
+        }
+        [NotMapped]
+        public FondsModell SelectedFond
+        {
+            get { if (Fond == 0) return AllFonds.First(); else return AllFonds.Where(x => x.Id_fond == Fond).First(); }
+            set { MessageBox.Show(value.Fond_name); Fond = value.Id_fond; OnPropertyChanged(nameof(SelectedFond)); }
+        }
+        [NotMapped]
+        public WorkersModell SelectedWorker
+        {
+            get { if (Worker == 0) return AllWorkers.First(); else return AllWorkers.Where(x => x.Id_worker == Worker).First(); }
+            set { MessageBox.Show(value.GetFio); Worker = value.Id_worker; OnPropertyChanged(nameof(SelectedWorker)); }
+        }
+        [NotMapped]
+        public Literature_sourcesModell SelectedSource
+        {
+            get { if (Literature_source == 0) return AllSources.First(); else return AllSources.Where(x => x.Id_source == Literature_source).First(); }
+            set { MessageBox.Show(value.Source_name); Literature_source = value.Id_source; OnPropertyChanged(nameof(SelectedSource)); }
+        }
+        [NotMapped]
+        public Literature_typesModell SelectedType
+        {
+            get { if (Literature_type == 0) return AllTypes.First(); else return AllTypes.Where(x => x.Id_type == Literature_type).First(); }
+            set { MessageBox.Show(value.Type_name); Literature_type = value.Id_type; OnPropertyChanged(nameof(SelectedType)); }
         }
     }
 }

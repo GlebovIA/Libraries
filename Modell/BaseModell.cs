@@ -2,10 +2,13 @@
 using Libraries.View.Pages.CommonPages;
 using Libraries.View.Pages.Fond;
 using Libraries.View.Pages.Library;
+using Libraries.View.Pages.LiteratureSource;
+using Libraries.View.Pages.LiteratureType;
+using Libraries.View.Pages.Replenishment;
+using Libraries.View.Pages.Worker;
 using Libraries.ViewModell;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,8 +18,7 @@ namespace Libraries.Modell
 {
     public class BaseModell : INotifyPropertyChanged
     {
-        [NotMapped]
-        public int Id { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -45,34 +47,34 @@ namespace Libraries.Modell
                         Items.Add(new FondItem(fond, fonds));
                     }
                     break;
-                    //case entity.Sources:
-                    //    LiteratureSourcesContext sources = new LiteratureSourcesContext();
-                    //    foreach (Literature_sourceModell source in sources.Literature_sources)
-                    //    {
-                    //        Items.Add(new LiteratureSourceItem(source));
-                    //    }
-                    //    break;
-                    //case entity.Types:
-                    //    LiteratureTypesContext types = new LiteratureTypesContext();
-                    //    foreach (Literature_typesModell type in types.Literature_types)
-                    //    {
-                    //        Items.Add(new LiteratureTypeItem(type));
-                    //    }
-                    //    break;
-                    //case entity.Workers:
-                    //    WorkersContext workers = new WorkersContext();
-                    //    foreach (WorkersModell worker in workers.Workers)
-                    //    {
-                    //        Items.Add(new WorketItem(worker));
-                    //    }
-                    //    break;
-                    //case entity.Replenishments:
-                    //    ReplenishmentsContext replenishments = new ReplenishmentsContext();
-                    //    foreach (ReplenishmentsModell replenishment in replenishments.Replenishments)
-                    //    {
-                    //        Items.Add(new ReplenishmentItem(replenishment));
-                    //    }
-                    //    break;
+                case entity.Sources:
+                    LiteratureSourcesContext sources = new LiteratureSourcesContext();
+                    foreach (Literature_sourcesModell source in sources.Literature_sources)
+                    {
+                        Items.Add(new SourceItem(source, sources));
+                    }
+                    break;
+                case entity.Types:
+                    LiteratureTypesContext types = new LiteratureTypesContext();
+                    foreach (Literature_typesModell type in types.Literature_types)
+                    {
+                        Items.Add(new TypeItem(type, types));
+                    }
+                    break;
+                case entity.Workers:
+                    WorkersContext workers = new WorkersContext();
+                    foreach (WorkersModell worker in workers.Workers)
+                    {
+                        Items.Add(new WorkerItem(worker, workers));
+                    }
+                    break;
+                case entity.Replenishments:
+                    ReplenishmentsContext replenishments = new ReplenishmentsContext();
+                    foreach (ReplenishmentsModell replenishment in replenishments.Replenishments)
+                    {
+                        Items.Add(new ReplenishmentItem(replenishment, replenishments));
+                    }
+                    break;
             }
             return Items;
         }

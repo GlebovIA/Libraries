@@ -1,6 +1,7 @@
 ﻿using Libraries.Modell;
 using Libraries.ViewModell;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Windows;
 using static Libraries.Modell.TabsModell;
 
@@ -10,11 +11,21 @@ namespace Libraries.Contexts
     {
         public static void Edit(BaseModell modell, BaseContext context, bool isNew)
         {
-            if (isNew)
+            try
             {
-                context.Add(modell);
+                if (isNew)
+                {
+                    context.Add(modell);
+                }
+                context.SaveChanges();
+                VMMW.CurrentPage = VMMW.MP;
+                MP.ItemsList.ItemsSource = TabsModell.CreateItems(VMTabs.CurrentElement);
             }
-            context.SaveChanges();
+            catch (DbUpdateException) { MessageBox.Show("Все поля должны быть заполнены!", "Уведомление"); }
+            catch (Exception) { MessageBox.Show("При выполнении действия произошла ошибка!", "Уведомление"); return; }
+        }
+        public static void Cancell()
+        {
             VMMW.CurrentPage = VMMW.MP;
             MP.ItemsList.ItemsSource = TabsModell.CreateItems(VMTabs.CurrentElement);
         }
@@ -27,10 +38,7 @@ namespace Libraries.Contexts
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (optionsBuilder.UseSqlServer(Classes.Db.DbConnection.OpenConnection()) == null)
-            {
-                MessageBox.Show("Проверьте правильность логина и пароля, а также подключение к базе данных.");
-            }
+            optionsBuilder.UseSqlServer(Classes.Db.DbConnection.OpenConnection());
         }
     }
 }

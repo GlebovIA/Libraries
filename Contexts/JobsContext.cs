@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Libraries.Contexts
 {
-    public class UsersContext : BaseContext
+    public class JobsContext : BaseContext
     {
-        public DbSet<UsersModell> Users { get; set; }
-        public UsersContext()
+        public DbSet<JobsModell> Jobs { get; set; }
+        public JobsContext()
         {
             Database.EnsureCreated();
-            Users.Load();
+            Jobs.Load();
         }
     }
 }

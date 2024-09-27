@@ -25,5 +25,16 @@ namespace Libraries.ViewModell
                 });
             }
         }
+        public RelayCommand Cancell
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    BaseContext.Cancell();
+                });
+            }
+        }
+
     }
 }

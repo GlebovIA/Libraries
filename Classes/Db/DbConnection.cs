@@ -28,8 +28,7 @@ namespace Libraries.Classes.Db
         {
             try
             {
-                if (Connection.State == System.Data.ConnectionState.Open) Connection.Close();
-                Connection.Open();
+                Connection.OpenAsync();
                 return Connection;
             }
             catch (Exception ex)

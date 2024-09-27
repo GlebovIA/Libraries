@@ -13,7 +13,6 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
-                Id = _id;
                 OnPropertyChanged(nameof(Id_type));
             }
         }

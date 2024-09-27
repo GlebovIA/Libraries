@@ -1,17 +1,17 @@
-﻿<UserControl x:Class="Libraries.View.Pages.Fond.FondItem"
+﻿<UserControl x:Class="Libraries.View.Pages.Replenishment.ReplenishmentItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Libraries.View.Pages.Fond"
-             mc:Ignorable="d" >
+             xmlns:local="clr-namespace:Libraries.View.Pages.Replenishment"
+             mc:Ignorable="d">
     <Border CornerRadius="10" BorderThickness="1" BorderBrush="#ff5a798e" Background="#ffefd0a8" Margin="5">
         <Grid Height="80">
             <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 5, 0, 0">
-                <TextBlock x:Name="NameTBck" Text="{Binding Modell.Fond_name}" FontSize="18" FontWeight="Bold" Foreground="#ff5a798e"/>
+                <TextBlock x:Name="FioTBck" Text="{Binding Modell.GetDate}" FontSize="18" FontWeight="Bold" Foreground="#ff5a798e"/>
             </Label>
             <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 45, 0, 0">
-                <TextBlock x:Name="LibraryTBck" Text="{Binding Modell.ThisLibrary}" FontSize="14" Foreground="#ff5a798e"/>
+                <TextBlock x:Name="LibraryTBck" Text="{Binding Modell.SelectedFond.Fond_name}" FontSize="18" FontWeight="Bold" Foreground="#ff5a798e"/>
             </Label>
             <Button Content="Изменить" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10, 5, 10, 0" Command="{Binding Edit}"/>
             <Button Content="Удалить" Height="30" Width="100" Background="#ffefd0a8" BorderBrush="#ff5a798e" BorderThickness="2" Foreground="#ff5a798e" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10, 0, 10, 5" Command="{Binding Delete}"/>

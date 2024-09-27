@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using Libraries.Contexts;
+using Libraries.Modell;
+using Libraries.ViewModell;
+using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Libraries.View.Pages.Fond
 {
@@ -18,9 +11,23 @@ namespace Libraries.View.Pages.Fond
     /// </summary>
     public partial class FondRedacPage : Page
     {
-        public FondRedacPage()
+        public FondsModell Modell { get; set; }
+        public FondRedacPage(FondsContext context, FondsModell modell = null)
         {
             InitializeComponent();
+            if (modell != null)
+            {
+                Modell = context.Fonds.Where(x => x.Id_fond == modell.Id_fond).FirstOrDefault();
+                AddRedacBtn.Content = "Изменить";
+                HeaderTBck.Text = "Редактирование фонда";
+                DataContext = new VMRedac(Modell, context, false);
+            }
+            else
+            {
+                AddRedacBtn.Content = "Добавить";
+                HeaderTBck.Text = "Добавление фонда";
+                DataContext = new VMRedac(new FondsModell(), new FondsContext());
+            }
         }
     }
 }

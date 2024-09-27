@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace Libraries.Modell
 {
-    public class UserModell : BaseModell
+    public class UsersModell : BaseModell
     {
         private int _id;
         private string _login;
@@ -17,7 +17,6 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
-                Id = _id;
                 OnPropertyChanged(nameof(Id_user));
             }
         }

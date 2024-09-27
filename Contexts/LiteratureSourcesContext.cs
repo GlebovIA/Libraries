@@ -5,7 +5,7 @@ namespace Libraries.Contexts
 {
     public class LiteratureSourcesContext : BaseContext
     {
-        public DbSet<Literature_sourceModell> Literature_sources { get; set; }
+        public DbSet<Literature_sourcesModell> Literature_sources { get; set; }
         public LiteratureSourcesContext()
         {
             Database.EnsureCreated();

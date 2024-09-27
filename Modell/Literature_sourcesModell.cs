@@ -2,7 +2,7 @@
 
 namespace Libraries.Modell
 {
-    public class Literature_sourceModell : BaseModell
+    public class Literature_sourcesModell : BaseModell
     {
         private int _id;
         private string _sourceName;
@@ -13,7 +13,6 @@ namespace Libraries.Modell
             set
             {
                 _id = value;
-                Id = _id;
                 OnPropertyChanged(nameof(Id_source));
             }
         }
