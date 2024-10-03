@@ -59,10 +59,10 @@ namespace Libraries.Modell
                 new TabElement(new TabsModell("Библиотеки", "/Resources/Images/library.png", entity.Libraries)),
                 new TabElement(new TabsModell("Фонды", "/Resources/Images/fonds.png", entity.Fonds)),
                 new TabElement(new TabsModell("Типы литературы", "/Resources/Images/literatureTypes.png", entity.Types)),
-                new TabElement(new TabsModell("Носители литературы", "/Resources/Images/literatureSources.png", entity.Sources))
             };
             if (UsersModell.CurrentUser == UsersModell.usersRole.Librarian || UsersModell.CurrentUser == UsersModell.usersRole.Admin)
             {
+                AccessibleEntities.Add(new TabElement(new TabsModell("Носители литературы", "/Resources/Images/literatureSources.png", entity.Sources)));
                 AccessibleEntities.Add(new TabElement(new TabsModell("Пополнения фондов", "/Resources/Images/replenishments.png", entity.Replenishments)));
                 AccessibleEntities.Add(new TabElement(new TabsModell("Сотрудники", "/Resources/Images/workers.png", entity.Workers)));
             }

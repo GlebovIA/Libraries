@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
 using static Libraries.Modell.TabsModell;
 
@@ -31,7 +30,6 @@ namespace Libraries.Modell
             VMTabs.CurrentElement = element;
             List<UserControl> Items = new List<UserControl>();
             entity SelectedEntity = (element.DataContext as VMTabs).Modell.Entity;
-            MessageBox.Show(SelectedEntity.ToString());
             switch (SelectedEntity)
             {
                 case entity.Libraries:

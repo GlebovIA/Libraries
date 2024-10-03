@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Libraries.Classes.Common;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Windows;
 
@@ -11,8 +12,15 @@ namespace Libraries.Classes.Db
         {
             try
             {
-                Connection = new SqlConnection($"server=HOME-PC\\MSSERVER;database=Libraries;user={login};pwd={pwd}");
-                return Connection;
+                if (login != "" & pwd != "")
+                {
+                    Connection = new SqlConnection($"server=HOME-PC\\MSSERVER;database=Libraries;user={login};pwd={Hasher.GetHash(pwd)}");
+                    return Connection;
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch
             {
@@ -28,8 +36,12 @@ namespace Libraries.Classes.Db
         {
             try
             {
-                Connection.OpenAsync();
-                return Connection;
+                if (Connection != null)
+                {
+                    Connection.OpenAsync();
+                    return Connection;
+                }
+                return null;
             }
             catch (Exception ex)
             {

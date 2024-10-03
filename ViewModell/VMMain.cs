@@ -2,6 +2,8 @@
 using Libraries.Classes.Common;
 using Libraries.Modell;
 using Libraries.View.Pages.CommonPages;
+using System.Windows;
+
 
 namespace Libraries.ViewModell
 {
@@ -13,6 +15,11 @@ namespace Libraries.ViewModell
         {
             MP = mp;
             main = new MainModell(MP);
+            if (UsersModell.CurrentUser == UsersModell.usersRole.Reader)
+            {
+                MP.ExportBtn.Visibility = Visibility.Hidden;
+                MP.AddBtn.Visibility = Visibility.Hidden;
+            }
             CreateTabs.Execute(main);
         }
         public RelayCommand CreateTabs

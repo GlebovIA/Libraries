@@ -1,6 +1,7 @@
 ﻿using Libraries.Contexts;
 using Libraries.Modell;
 using Libraries.ViewModell;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Libraries.View.Pages.LiteratureType
@@ -14,6 +15,11 @@ namespace Libraries.View.Pages.LiteratureType
         {
             InitializeComponent();
             DataContext = new VMItem(this, modell, context);
+            if (UsersModell.CurrentUser == UsersModell.usersRole.Reader)
+            {
+                this.Edit.Visibility = Visibility.Hidden;
+                this.Delete.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
