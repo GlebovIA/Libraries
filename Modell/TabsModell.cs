@@ -11,7 +11,7 @@ namespace Libraries.Modell
     {
         public enum entity
         {
-            Libraries, Fonds, Types, Sources, Workers, Replenishments
+            Libraries, Fonds, Types, Sources, Workers, Replenishments, Educations, Jobs
         }
         private entity _entity { get; set; }
         private string _name { get; set; }

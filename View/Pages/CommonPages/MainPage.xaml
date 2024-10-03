@@ -19,7 +19,7 @@
             </Grid.Effect>
         </Grid>
         <Grid Background="#ffefd0a8" Margin="0, 60, 0, 0">
-            <Border Width="270" HorizontalAlignment="Left" Margin="5, 35, 0, 5">
+            <Border Width="270" HorizontalAlignment="Left" Margin="5, 5, 0, 5">
                 <ListView x:Name="TabList"  Background="#ffefd0a8" BorderThickness="0">
                     <ListView.Resources>
                         <Style TargetType="ListViewItem">
@@ -36,7 +36,8 @@
                     </ListView.Resources>
                 </ListView>
             </Border>
-            <Border Background="White" CornerRadius="10" Margin="280, 35, 5, 50">
+            <Label Margin="280, 0, 0, 50"/>
+            <Border Background="White" CornerRadius="10" Margin="280, 5, 5, 50">
                 <ListView x:Name="ItemsList" BorderThickness="0" Margin="3">
                     <ListView.Resources>
                         <Style TargetType="ListViewItem">
